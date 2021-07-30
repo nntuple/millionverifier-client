@@ -1,11 +1,17 @@
-<?php
+# Millionverifier API Client
 
+PHP Client for Millionverifier APIs.
+
+## example
+
+``` php
 use Ntuple\MillionverifierClient\Client;
 use Ntuple\MillionverifierClient\VerifyEamail\Request;
 
-require __DIR__ . '/vendor/autoload.php';
+# you api key
+$api_key = 'API_KEY_FOR_TEST';
 
-$client = new Client();
+client = new Client($api_key);
 
 # use Constructor
 $req = new Request;
@@ -21,3 +27,5 @@ $req = Request::fromArray([
 $resp = $client->verifyEmail($req);
 
 echo (json_encode($resp));
+
+```
