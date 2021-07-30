@@ -2,14 +2,16 @@
     "name": "nntuple/millionverifier-client",
     "version": "1.0.0",
     "type": "library",
-    "authors": [
-        {
-            "name": "garam",
-            "email": "garam-park@naver.com"
-        }
-    ],
+    "authors": [{
+        "name": "garam",
+        "email": "garam-park@naver.com"
+    }],
     "autoload": {
-        "psr-4": {"Ntuple\\MillionverifierClient\\": "src/"}
+        "psr-4": {
+            "Ntuple\\MillionverifierClient\\": "src/"
+        }
     },
-    "require": {}
+    "require-dev": {
+        "psy/psysh": "^0.10.8"
+    }
 }

@@ -20,4 +20,4 @@ $req = Request::fromArray([
 
 $resp = $client->verifyEmail($req);
 
-echo(json_encode($resp));
+echo (json_encode($resp));
