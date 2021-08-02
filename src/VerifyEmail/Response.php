@@ -1,6 +1,6 @@
 <?php
 
-namespace Ntuple\MillionverifierClient\VerifyEamail;
+namespace Ntuple\MillionverifierClient\VerifyEmail;
 
 class Response
 {

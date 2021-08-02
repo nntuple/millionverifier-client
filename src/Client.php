@@ -3,8 +3,9 @@
 namespace Ntuple\MillionverifierClient;
 
 use Ntuple\MillionverifierClient\Exceptions\EmailsRequiredException;
-use Ntuple\MillionverifierClient\VerifyEamail\Request;
-use Ntuple\MillionverifierClient\VerifyEamail\Response;
+use Ntuple\MillionverifierClient\CheckCredits\Response as CheckCreditsResponse;
+use Ntuple\MillionverifierClient\VerifyEmail\Request as VerifyEmailRequest;
+use Ntuple\MillionverifierClient\VerifyEmail\Response as VerifyEmailResponse;
 
 class Client
 {
@@ -16,7 +17,7 @@ class Client
         $this->api_key = $api_key;
     }
 
-    public function verifyEmail(Request $request)
+    public function verifyEmail(VerifyEmailRequest $request)
     {
         $curl = curl_init();
 
@@ -43,6 +44,28 @@ class Client
         curl_close($curl);
 
         $array = json_decode($response, true);
-        return Response::fromArray($array);
+        return VerifyEmailResponse::fromArray($array);
+    }
+
+    public function checkCredits()
+    {
+        $curl = curl_init();
+        $api_key = $this->api_key;
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.millionverifier.com/api/v3/credits?api=$api_key",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        $array = json_decode($response, true);
+        return CheckCreditsResponse::fromArray($array);
     }
 }
