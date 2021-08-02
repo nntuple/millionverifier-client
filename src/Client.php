@@ -3,8 +3,8 @@
 namespace Ntuple\MillionverifierClient;
 
 use Ntuple\MillionverifierClient\Exceptions\EmailsRequiredException;
-use Ntuple\MillionverifierClient\VerifyEamail\Request;
-use Ntuple\MillionverifierClient\VerifyEamail\Response;
+use Ntuple\MillionverifierClient\VerifyEmail\Request as VerifyEmailRequest;
+use Ntuple\MillionverifierClient\VerifyEmail\Response as VerifyEmailResponse;
 
 class Client
 {
@@ -16,7 +16,7 @@ class Client
         $this->api_key = $api_key;
     }
 
-    public function verifyEmail(Request $request)
+    public function verifyEmail(VerifyEmailRequest $request)
     {
         $curl = curl_init();
 
@@ -43,6 +43,6 @@ class Client
         curl_close($curl);
 
         $array = json_decode($response, true);
-        return Response::fromArray($array);
+        return VerifyEmailResponse::fromArray($array);
     }
 }
